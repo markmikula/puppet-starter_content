@@ -1,10 +1,8 @@
 # @summary This profile installs IIS and turns off the default website
 class profile::client_iis {
 
-$Variable = 'Web-Server'
-
   $iis_features = [
-    ${Variable},
+    'web-server',
     'net-framework-45-aspnet',
     'net-framework-45-core',
     'net-framework-45-features',
