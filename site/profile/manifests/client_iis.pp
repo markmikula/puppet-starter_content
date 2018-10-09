@@ -38,7 +38,6 @@ class profile::client_iis {
     'web-request-monitor',
     'web-scripting-tools',
     'web-security',
-    'web-server',
     'web-stat-compression',
     'web-static-content',
     'web-url-auth',
