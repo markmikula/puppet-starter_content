@@ -3,8 +3,8 @@ class profile::windows_baseline {
 
 exec { 'winrm-enable':
   provider => powershell,
-  command => "winrm quickconfig -quiet",
-  unless => "if (test-wsman -erroraction silentlycontinue) { exit 1 }",
+  command => 'winrm quickconfig -quiet',
+  unless => 'if(!(test-wsman -erroraction silentlycontinue)) { exit 1 }',
 }
 
 }
