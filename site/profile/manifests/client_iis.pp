@@ -1,6 +1,8 @@
 # @summary This profile installs IIS and turns off the default website
 class profile::client_iis {
 
+  include profile::windows_baseline
+
   $iis_features = [
     'web-server',
     'net-framework-45-aspnet',
@@ -54,4 +56,23 @@ class profile::client_iis {
     ensure => absent,
   }
 
+
+  #Web Platform Installer
+  $file = 'WebPlatformInstaller_amd64_en-US.msi'
+  $url  = "http://download.microsoft.com/download/C/F/F/CFF3A0B8-99D4-41A2-AE1A-496C08BEB904/${file}"
+  $temp = "C:\\Windows\\Temp\\${file}"
+
+exec { 'download_webplatforminstaller':
+  provider  => powershell,
+  # note that Start-BitsTransfer can't handle redirected URLs
+  command   => "(New-Object Net.WebClient).DownloadFile(\"${url}\", \"${temp}\")",
+  creates   => $temp
 }
+
+package { 'Microsoft Web Platform Installer 5.0':
+  ensure  => '5.0.50430.0',
+  source  => $temp,
+}
+
+}
+
