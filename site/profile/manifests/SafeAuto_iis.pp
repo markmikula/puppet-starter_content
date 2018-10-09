@@ -1,5 +1,5 @@
 # @summary This profile installs IIS and turns off the default website
-class profile::SafeAutoIIS {
+class profile::safeautoiis {
 
 $Variable = 'Web-Server'
 
